@@ -1,0 +1,16 @@
+public class Solution {
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        ListNode a = headA;
+        ListNode b = headB;
+
+        // Loop until both pointers meet or both become null
+        while (a != b) {
+            // Move to next node, or switch to the other list's head
+            a = (a == null) ? headB : a.next;
+            b = (b == null) ? headA : b.next;
+        }
+
+        // Either intersection node or null
+        return a;
+    }
+}
