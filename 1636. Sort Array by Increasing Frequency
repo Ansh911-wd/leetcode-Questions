@@ -1,0 +1,32 @@
+class Solution {
+    public int[] frequencySort(int[] nums) {
+
+        HashMap<Integer, Integer> map = new HashMap<>();
+
+        // Count frequency
+        for (int num : nums) {
+            map.put(num, map.getOrDefault(num, 0) + 1);
+        }
+
+        // Store elements in a list
+        List<Integer> list = new ArrayList<>();
+        for (int num : nums) {
+            list.add(num);
+        }
+
+        // Sort the list
+        Collections.sort(list, (a, b) -> {
+            if (map.get(a).equals(map.get(b))) {
+                return b - a;          // Larger number first
+            }
+            return map.get(a) - map.get(b); // Smaller frequency first
+        });
+
+        // Copy back to array
+        for (int i = 0; i < nums.length; i++) {
+            nums[i] = list.get(i);
+        }
+
+        return nums;
+    }
+}
