@@ -1,0 +1,46 @@
+class Solution {
+
+    long MOD = 1000000007;
+
+    public int numPrimeArrangements(int n) {
+
+        int primeCount = 0;
+
+        // Count prime numbers
+        for (int i = 2; i <= n; i++) {
+            if (isPrime(i)) {
+                primeCount++;
+            }
+        }
+
+        long ans = (factorial(primeCount) * factorial(n - primeCount)) % MOD;
+
+        return (int) ans;
+    }
+
+    // Check if a number is prime
+    public boolean isPrime(int num) {
+
+        if (num < 2)
+            return false;
+
+        for (int i = 2; i * i <= num; i++) {
+            if (num % i == 0)
+                return false;
+        }
+
+        return true;
+    }
+
+    // Calculate factorial with modulo
+    public long factorial(int n) {
+
+        long fact = 1;
+
+        for (int i = 2; i <= n; i++) {
+            fact = (fact * i) % MOD;
+        }
+
+        return fact;
+    }
+}
